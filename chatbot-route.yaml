@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: openai-chatbot
+  namespace: emiruzel-dev
+spec:
+  to:
+    kind: Service
+    name: openai-chatbot
+  port:
+    targetPort: 80
+  tls:
+    termination: edge
+

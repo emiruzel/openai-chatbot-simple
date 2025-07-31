@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openai-chatbot
+  namespace: emiruzel-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openai-chatbot
+  template:
+    metadata:
+      labels:
+        app: openai-chatbot
+    spec:
+      containers:
+        - name: chatbot
+          image: docker.io/emiruzel/openai-chatbot:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-secret
+                  key: OPENAI_API_KEY
+
