@@ -3,11 +3,13 @@ kind: Service
 metadata:
   name: openai-chatbot
   namespace: emiruzel-dev
+  labels:
+    app: openai-chatbot
 spec:
   selector:
     app: openai-chatbot
   ports:
     - protocol: TCP
-      port: 80
+      port: 8000
       targetPort: 8000
-
+  type: ClusterIP
